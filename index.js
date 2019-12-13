@@ -68,11 +68,6 @@ const OPTS = {
 
       console.log("on to the SSL");
 
-      // Setup an SSL for the application
-      if (!OPTS.ssl) {
-        return false;
-      }
-
       await axios({
         url: `https://api.serverpilot.io/v1/apps/${newApp.id}/ssl`,
         method: "post",
@@ -87,6 +82,8 @@ const OPTS = {
           auto: true
         }
       });
+
+      console.log("done with the SSL. auto-enabling");
 
       // Force an SSL
       await axios({
@@ -103,6 +100,8 @@ const OPTS = {
           force: true
         }
       });
+
+      console.log("all done");
     } catch (error) {
       core.setFailed(error);
     }
