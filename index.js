@@ -37,6 +37,8 @@ const OPTS = {
 
       const newApp = appRes.data.data;
 
+      console.log(newApp);
+
       // Create a database for the application
       await axios({
         url: "https://api.serverpilot.io/v1/dbs",
@@ -63,6 +65,8 @@ const OPTS = {
           }
         }
       });
+
+      console.log("on to the SSL");
 
       // Setup an SSL for the application
       if (!OPTS.ssl) {
