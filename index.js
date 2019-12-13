@@ -30,7 +30,7 @@ const getApps = async () => {
 (async () => {
   if (OPTS.action === "create") {
     try {
-      const allApps = getApps();
+      const allApps = await getApps();
       const existingApp = allApps.filter(app => app.name === OPTS.app_name);
 
       if (existingApp.length === 0) {
