@@ -28,7 +28,7 @@ const OPTS = {
           password: OPTS.api_key
         },
         data: {
-          name: "",
+          name: OPTS.app_name,
           sysuserid: OPTS.system_user,
           runtime: `php${OPTS.php_version}`,
           domains: OPTS.domains
