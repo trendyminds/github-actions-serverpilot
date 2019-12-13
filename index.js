@@ -17,7 +17,7 @@ const OPTS = {
   if (OPTS.action === "create") {
     try {
       // Create the new application
-      const newApp = axios({
+      axios({
         url: "https://api.serverpilot.io/v1/apps",
         method: "post",
         headers: {
@@ -34,10 +34,8 @@ const OPTS = {
           domains: OPTS.domains
         }
       });
-
-      console.log(newApp.data.data);
     } catch (error) {
-      core.setFailed(error.message);
+      core.setFailed(error);
     }
   }
 
