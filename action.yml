@@ -36,7 +36,7 @@ inputs:
   domains:
     description: 'The domains to use for this app if we are creating a new one'
     required: false
-    default: []
+    default: null
 runs:
   using: 'node12'
   main: 'index.js'
