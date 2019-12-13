@@ -12,7 +12,9 @@ jobs:
         client_id: ${{secrets.SERVERPILOT_CLIENT_ID}}
         api_key: ${{secrets.SERVERPILOT_API_KEY}}
         system_user: ${{secrets.SERVERPILOT_SYSTEM_USER}}
-        app_name: 'my-test-app'
+        app_name: 'mytestapp'
         php_version: '7.2'
         ssl: true
         db: true
+        domains:
+          - mytestapp.trendyminds.io
