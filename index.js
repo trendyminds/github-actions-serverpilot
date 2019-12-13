@@ -33,7 +33,7 @@ const getApps = async () => {
       const allApps = await getApps();
       const existingApp = allApps.filter(app => app.name === OPTS.app_name);
 
-      if (existingApp.length === 0) {
+      if (existingApp.length !== 0) {
         console.log("This app already exists. Skipping creation.");
 
         return false;
