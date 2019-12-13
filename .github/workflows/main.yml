@@ -17,4 +17,4 @@ jobs:
         ssl: true
         db: true
         domains:
-          - mytestapp.trendyminds.io
+          - "mytestapp.trendyminds.io"
