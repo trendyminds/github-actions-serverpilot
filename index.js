@@ -9,23 +9,36 @@ const OPTS = {
   system_user: core.getInput("system_user"),
   app_name: core.getInput("app_name"),
   php_version: core.getInput("php_version"),
-  domain: core.getInput("domain"),
-  ssl: true,
-  db: true
+  domain: core.getInput("domain")
 };
 
-// Simple, promisified setTimeout
-const delay = ms => {
-  return new Promise(res =>
-    setTimeout(() => {
-      res();
-    }, ms)
-  );
+const getApps = async () => {
+  const res = await axios({
+    url: "https://api.serverpilot.io/v1/apps",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    auth: {
+      username: OPTS.client_id,
+      password: OPTS.api_key
+    }
+  });
+
+  return res.data.data;
 };
 
 (async () => {
   if (OPTS.action === "create") {
     try {
+      const allApps = getApps();
+      const existingApp = allApps.filter(app => app.name === OPTS.app_name);
+
+      if (existingApp.length === 0) {
+        console.log("This app already exists. Skipping creation.");
+
+        return false;
+      }
+
       // Create the new application
       const appRes = await axios({
         url: "https://api.serverpilot.io/v1/apps",
@@ -46,8 +59,6 @@ const delay = ms => {
       });
 
       const newApp = appRes.data.data;
-
-      console.log(newApp);
 
       // Create a database for the application
       await axios({
@@ -75,49 +86,6 @@ const delay = ms => {
           }
         }
       });
-
-      console.log("on to the SSL");
-
-      await delay(1000);
-
-      console.log(`https://api.serverpilot.io/v1/apps/${newApp.id}/ssl`);
-
-      await axios({
-        url: `https://api.serverpilot.io/v1/apps/${newApp.id}/ssl`,
-        method: "post",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        auth: {
-          username: OPTS.client_id,
-          password: OPTS.api_key
-        },
-        data: {
-          auto: true
-        }
-      });
-
-      await delay(1000);
-
-      console.log("done with the SSL. auto-enabling");
-
-      // Force an SSL
-      await axios({
-        url: `https://api.serverpilot.io/v1/apps/${newApp.id}/ssl`,
-        method: "post",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        auth: {
-          username: OPTS.client_id,
-          password: OPTS.api_key
-        },
-        data: {
-          force: true
-        }
-      });
-
-      console.log("all done");
     } catch (error) {
       core.setFailed(error);
     }

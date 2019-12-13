@@ -14,6 +14,4 @@ jobs:
         system_user: ${{secrets.SERVERPILOT_SYSTEM_USER}}
         app_name: 'mytestapp'
         php_version: '7.2'
-        ssl: true
-        db: true
         domain: 'mytestapp.trendyminds.io'
