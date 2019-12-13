@@ -3,9 +3,9 @@ on: push
 jobs:
   test_run:
     runs-on: ubuntu-latest
-    name: A test of the ServerPilot workflow
+    name: ServerPilot
     steps:
-    - name: Run a test ServerPilot action
+    - name: Tests the creation action
       uses: actions/github-actions-serverpilot@master
       with:
         client_id: 'hello-there'
