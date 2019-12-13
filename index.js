@@ -13,6 +13,15 @@ const OPTS = {
   db: true
 };
 
+// Simple, promisified setTimeout
+const delay = ms => {
+  return new Promise(res =>
+    setTimeout(() => {
+      res();
+    }, ms)
+  );
+};
+
 (async () => {
   if (OPTS.action === "create") {
     try {
@@ -68,6 +77,8 @@ const OPTS = {
 
       console.log("on to the SSL");
 
+      await delay(1000);
+
       await axios({
         url: `https://api.serverpilot.io/v1/apps/${newApp.id}/ssl`,
         method: "post",
@@ -82,6 +93,8 @@ const OPTS = {
           auto: true
         }
       });
+
+      await delay(1000);
 
       console.log("done with the SSL. auto-enabling");
 
