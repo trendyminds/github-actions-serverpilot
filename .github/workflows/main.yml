@@ -6,7 +6,7 @@ jobs:
     name: ServerPilot
     steps:
     - name: Tests the creation action
-      uses: actions/github-actions-serverpilot@master
+      uses: trendyminds/github-actions-serverpilot@master
       with:
         client_id: 'hello-there'
         api_key: '1234'
