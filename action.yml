@@ -20,7 +20,7 @@ inputs:
   app_name:
     description: 'The name of the app to create or remove'
     required: true
-    default: null
+    default: ''
   php_version:
     description: 'What the PHP version should be if we are creating a new app'
     required: false
@@ -36,7 +36,7 @@ inputs:
   domains:
     description: 'The domains to use for this app if we are creating a new one'
     required: false
-    default: null
+    default: ''
 runs:
   using: 'node12'
   main: 'index.js'
