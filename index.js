@@ -9,7 +9,7 @@ const OPTS = {
   system_user: core.getInput("system_user"),
   app_name: core.getInput("app_name"),
   php_version: core.getInput("php_version"),
-  domains: core.getInput("domains"),
+  domain: core.getInput("domain"),
   ssl: true,
   db: true
 };
@@ -41,7 +41,7 @@ const delay = ms => {
           name: OPTS.app_name,
           sysuserid: OPTS.system_user,
           runtime: `php${OPTS.php_version}`,
-          domains: OPTS.domains
+          domains: [OPTS.domain]
         }
       });
 

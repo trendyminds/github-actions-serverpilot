@@ -33,8 +33,8 @@ inputs:
     description: 'Creates a new database if we are creating a new app'
     required: false
     default: true
-  domains:
-    description: 'The domains to use for this app if we are creating a new one'
+  domain:
+    description: 'The domain to use for this app if we are creating a new one'
     required: false
     default: ''
 runs:
