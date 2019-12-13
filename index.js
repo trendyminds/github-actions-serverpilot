@@ -86,6 +86,8 @@ const getApps = async () => {
           }
         }
       });
+
+      console.log(`${OPTS.domain} was created successfully.`);
     } catch (error) {
       core.setFailed(error);
     }
@@ -101,18 +103,18 @@ const getApps = async () => {
       return false;
     }
 
-    console.log(existingApp[0]);
+    await axios({
+      url: `https://api.serverpilot.io/v1/apps/${existingApp[0].id}`,
+      method: "delete",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      auth: {
+        username: OPTS.client_id,
+        password: OPTS.api_key
+      }
+    });
 
-    // await axios({
-    //   url: `https://api.serverpilot.io/v1/apps/${existingApp[0].id}`,
-    //   method: "delete",
-    //   headers: {
-    //     "Content-Type": "application/json"
-    //   },
-    //   auth: {
-    //     username: OPTS.client_id,
-    //     password: OPTS.api_key
-    //   }
-    // });
+    console.log(`${existingApp[0].domains[0]} was deleted successfully.`);
   }
 })();
