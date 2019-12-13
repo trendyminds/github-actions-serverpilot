@@ -79,6 +79,8 @@ const delay = ms => {
 
       await delay(1000);
 
+      console.log(`https://api.serverpilot.io/v1/apps/${newApp.id}/ssl`);
+
       await axios({
         url: `https://api.serverpilot.io/v1/apps/${newApp.id}/ssl`,
         method: "post",
