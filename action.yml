@@ -1,0 +1,38 @@
+name: 'ServerPilot'
+description: 'Interface with the ServerPilot API via a GitHub Action'
+inputs:
+  client_id:
+    description: 'Your ServerPilot client ID for the API connection'
+    required: true
+    default: ''
+  api_key:
+    description: 'Your ServerPilot API Key for the API connection'
+    required: true
+    default: ''
+  system_user:
+    description: 'The ServerPilot user to operate as when running commands'
+    required: true
+    default: ''
+  action:
+    description: 'The action to perform your ServerPilot account'
+    required: true
+    default: ''
+  app_name:
+    description: 'The name of the app to create or remove'
+    required: false
+    default: null
+  php_version:
+    description: 'If we're creating an app what PHP version should it be?'
+    required: false
+    default: null
+  ssl:
+    description: 'If we're creating an app should it have an SSL?'
+    required: false
+    default: null
+  db:
+    description: 'If we're creating an app should we also create a database?'
+    required: false
+    default: null
+runs:
+  using: 'node12'
+  main: 'index.js'

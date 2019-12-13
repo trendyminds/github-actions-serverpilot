@@ -1,0 +1,17 @@
+on: push
+
+jobs:
+  test_run:
+    runs-on: ubuntu-latest
+    name: A test of the ServerPilot workflow
+    steps:
+      uses: actions/github-actions-serverpilot@master
+      with:
+        client_id: 'hello-there'
+        api_key: '1234'
+        system_user: 'example_user'
+        action: 'create'
+        app_name: 'my_app'
+        php_version: '7.2'
+        ssl: true
+        db: true
