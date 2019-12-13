@@ -92,5 +92,27 @@ const getApps = async () => {
   }
 
   if (OPTS.action === "delete") {
+    const allApps = await getApps();
+    const existingApp = allApps.filter(app => app.name === OPTS.app_name);
+
+    if (existingApp.length === 0) {
+      console.log("This app doesn't exist. Skipping removal.");
+
+      return false;
+    }
+
+    console.log(existingApp[0]);
+
+    // await axios({
+    //   url: `https://api.serverpilot.io/v1/apps/${existingApp[0].id}`,
+    //   method: "delete",
+    //   headers: {
+    //     "Content-Type": "application/json"
+    //   },
+    //   auth: {
+    //     username: OPTS.client_id,
+    //     password: OPTS.api_key
+    //   }
+    // });
   }
 })();

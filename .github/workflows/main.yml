@@ -15,3 +15,12 @@ jobs:
         app_name: 'mytestapp'
         php_version: '7.2'
         domain: 'mytestapp.trendyminds.io'
+
+    - name: Tests the deletion action
+      uses: trendyminds/github-actions-serverpilot@master
+      with:
+        action: 'delete'
+        client_id: ${{secrets.SERVERPILOT_CLIENT_ID}}
+        api_key: ${{secrets.SERVERPILOT_API_KEY}}
+        system_user: ${{secrets.SERVERPILOT_SYSTEM_USER}}
+        app_name: 'mytestapp'
