@@ -37,7 +37,7 @@ const OPTS = {
 
       console.log(res.data);
     } catch (error) {
-      core.setFailed(error.message);
+      core.setFailed(error);
     }
   }
 
