@@ -22,15 +22,15 @@ inputs:
     required: false
     default: null
   php_version:
-    description: 'If we're creating an app what PHP version should it be?'
+    description: 'What the PHP version should be if we are creating a new app'
     required: false
     default: null
   ssl:
-    description: 'If we're creating an app should it have an SSL?'
+    description: 'Enables an SSL if we are creating a new app'
     required: false
     default: null
   db:
-    description: 'If we're creating an app should we also create a database?'
+    description: 'Creates a new database if we are creating a new app'
     required: false
     default: null
 runs:
