@@ -19,20 +19,24 @@ inputs:
     default: ''
   app_name:
     description: 'The name of the app to create or remove'
-    required: false
+    required: true
     default: null
   php_version:
     description: 'What the PHP version should be if we are creating a new app'
     required: false
-    default: null
+    default: "7.1"
   ssl:
     description: 'Enables an SSL if we are creating a new app'
     required: false
-    default: null
+    default: true
   db:
     description: 'Creates a new database if we are creating a new app'
     required: false
-    default: null
+    default: true
+  domains:
+    description: 'The domains to use for this app if we are creating a new one'
+    required: false
+    default: []
 runs:
   using: 'node12'
   main: 'index.js'
