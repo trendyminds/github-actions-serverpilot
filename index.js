@@ -17,7 +17,7 @@ const OPTS = {
   if (OPTS.action === "create") {
     try {
       // Create the new application
-      const res = await axios({
+      const appRes = await axios({
         url: "https://api.serverpilot.io/v1/apps",
         method: "post",
         headers: {
@@ -35,7 +35,70 @@ const OPTS = {
         }
       });
 
-      console.log(res.data);
+      const newApp = appRes.data.data;
+
+      // Create a database for the application
+      await axios({
+        url: "https://api.serverpilot.io/v1/dbs",
+        method: "post",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        auth: {
+          username: OPTS.client_id,
+          password: OPTS.api_key
+        },
+        data: {
+          appid: newApp.id,
+          name: OPTS.app_name,
+          user: {
+            name: OPTS.app_name,
+            password:
+              Math.random()
+                .toString(36)
+                .substring(2, 15) +
+              Math.random()
+                .toString(36)
+                .substring(2, 15)
+          }
+        }
+      });
+
+      // Setup an SSL for the application
+      if (!OPTS.ssl) {
+        return false;
+      }
+
+      await axios({
+        url: `https://api.serverpilot.io/v1/apps/${newApp.id}/ssl`,
+        method: "post",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        auth: {
+          username: OPTS.client_id,
+          password: OPTS.api_key
+        },
+        data: {
+          auto: true
+        }
+      });
+
+      // Force an SSL
+      await axios({
+        url: `https://api.serverpilot.io/v1/apps/${newApp.id}/ssl`,
+        method: "post",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        auth: {
+          username: OPTS.client_id,
+          password: OPTS.api_key
+        },
+        data: {
+          force: true
+        }
+      });
     } catch (error) {
       core.setFailed(error);
     }
