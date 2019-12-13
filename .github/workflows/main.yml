@@ -5,6 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     name: A test of the ServerPilot workflow
     steps:
+    - name: Run a test ServerPilot action
       uses: actions/github-actions-serverpilot@master
       with:
         client_id: 'hello-there'
