@@ -9,6 +9,7 @@ const OPTS = {
   system_user: core.getInput("system_user"),
   app_name: core.getInput("app_name"),
   php_version: core.getInput("php_version"),
+  domains: core.getInput("domains"),
   ssl: true,
   db: true
 };
