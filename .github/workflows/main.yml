@@ -16,5 +16,4 @@ jobs:
         php_version: '7.2'
         ssl: true
         db: true
-        domains:
-          - "mytestapp.trendyminds.io"
+        domains: ["mytestapp.trendyminds.io"]
